@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const express = require('express')
 const cors = require('cors')
@@ -18,3 +18,6 @@ app.get('/', (req, res, next)=>{
   res.send("Hello World!")
 })
 
+
+app.listen(port)
+console.log("running on port: " + port)
