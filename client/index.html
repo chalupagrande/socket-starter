@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Main</title>
+</head>
+<body>
+<h1>Hello World</h1>
+<input id= "text" type="text">
+<h3>Messages</h3>
+<ul id="messages">
+<!-- messages will appear here -->
+</ul>
+
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+<script>
+
+  var list = document.getElementById('messages')
+  var input = document.getElementById('text')
+  input.addEventListener('input', function(){
+    submit(input.value)
+  })
+
+ var socket = io.connect("http://localhost:3000")
+ socket.on('greeting', function (data) {
+    var text = document.createElement('li')
+    text.innerText = data
+    list.appendChild(text)
+
+    // socket.emit('my other event', { my: 'data' });
+  });
+
+ function submit(value){
+   var list = document.getElementById("messages")
+   socket.emit('greeting', value)
+ }
+</script>
+</body>
+</html>
